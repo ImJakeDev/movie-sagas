@@ -1,56 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App/App.js';
-import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-// Provider allows us to use redux within our react app
-import { Provider } from 'react-redux';
-import logger from 'redux-logger';
-// Import saga middleware
-import createSagaMiddleware from 'redux-saga';
+// React imports:
+import React from "react";
+import ReactDOM from "react-dom";
+import registerServiceWorker from "./registerServiceWorker";
+// Index CSS import:
+import "./index.css";
+// Component import:
+import App from "./components/App/App.js";
+// Redux imports:
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import logger from "redux-logger";
+// Redux Saga imports:
+import createSagaMiddleware from "redux-saga";
+import { takeEvery, put } from "redux-saga/effects";
 
 // Create the rootSaga generator function
-function* rootSaga() {
-
-}
+function* rootSaga() {}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
+// Store Reducers:
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_MOVIES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
-
+  switch (action.type) {
+    case "SET_MOVIES":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 // Used to store the movie genres
 const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "SET_GENRES":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
-// Create one store that all components can use
+// Redux Store setup:
 const storeInstance = createStore(
-    combineReducers({
-        movies,
-        genres,
-    }),
-    // Add sagaMiddleware to our store
+  combineReducers({
+    movies,
+    genres,
+    // Place reducers here: (Please just use one name without reducer in text)
+    // allGifs,
+  }),
+  compose(
+    // We have logger but Do Not Like...
     applyMiddleware(sagaMiddleware, logger),
+    // YAY Redux Devtool!!!!
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
-    document.getElementById('root'));
+// Random window store thing for console:
+window.store = storeInstance;
+
+// React App:
+ReactDOM.render(
+  <Provider store={storeInstance}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();
