@@ -15,13 +15,28 @@ import createSagaMiddleware from "redux-saga";
 import { takeEvery, put } from "redux-saga/effects";
 // Axios Impot:
 import axios from "axios";
+// End of Imports
 
+// Start of Sagas
 // Create the rootSaga generator function
-function* rootSaga() {}
+function* rootSaga() {
+  yield takeEvery("FETCH_MOVIES", fetchMovies);
+}
+// fetchMovies saga retrieves movies from server
+function* fetchMovies(action) {
+  try {
+    const response = yield axios.get(`/api/movies/`);
+    yield put({ type: "SET_MOVIES", payload: response });
+  } catch (error) {
+    alert("Unable to get Movies from server");
+  }
+}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+// End of Sagas
 
+// Start of Store Reducers
 // Store Reducers:
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -41,6 +56,7 @@ const genres = (state = [], action) => {
       return state;
   }
 };
+// End of Store Reducers
 
 // Redux Store setup:
 const storeInstance = createStore(
