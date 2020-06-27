@@ -13,6 +13,8 @@ import logger from "redux-logger";
 // Redux Saga imports:
 import createSagaMiddleware from "redux-saga";
 import { takeEvery, put } from "redux-saga/effects";
+// Axios Impot:
+import axios from "axios";
 
 // Create the rootSaga generator function
 function* rootSaga() {}
@@ -45,13 +47,11 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
-    // Place reducers here: (Please just use one name without reducer in text)
-    // allGifs,
   }),
   compose(
-    // We have logger but Do Not Like...
+    // We have logger and saga middleware:
     applyMiddleware(sagaMiddleware, logger),
-    // YAY Redux Devtool!!!!
+    // Redux Devtool:
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
@@ -59,7 +59,7 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-// Random window store thing for console:
+// Window store thing for console:
 window.store = storeInstance;
 
 // React App:
