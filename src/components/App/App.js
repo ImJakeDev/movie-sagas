@@ -2,12 +2,17 @@
 import React from "react";
 // App CSS import:
 import "./App.css";
+// Components Imports
+import Layout from "../Layout/Layout";
+import Content from "../Content/Content";
 
 // Renders the entire app on the DOM our main App component:
 const App = () => {
   return (
     <div className="App">
-      <p>Empty Page...</p>
+      <Layout>
+        <Content />
+      </Layout>
     </div>
   );
 };
