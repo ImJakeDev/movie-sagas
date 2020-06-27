@@ -23,12 +23,12 @@ function* rootSaga() {
   yield takeEvery("FETCH_MOVIES", fetchMovies);
 }
 // fetchMovies saga retrieves movies from server
-function* fetchMovies(action) {
+function* fetchMovies() {
   try {
-    const response = yield axios.get(`/api/movies/`);
-    yield put({ type: "SET_MOVIES", payload: response });
+    const response = yield axios.get('/api/movies');
+    yield put({ type: "SET_MOVIES", payload: response.data });
   } catch (error) {
-    alert("Unable to get Movies from server");
+    alert(error);
   }
 }
 
@@ -39,7 +39,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Start of Store Reducers
 // Store Reducers:
 // Used to store movies returned from the server
-const movies = (state = [], action) => {
+const movies = (state = null, action) => {
   switch (action.type) {
     case "SET_MOVIES":
       return action.payload;

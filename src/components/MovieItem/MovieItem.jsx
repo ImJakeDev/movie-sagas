@@ -2,7 +2,7 @@
 import React from "react";
 
 const MovieItem = (props) => {
-  return <>{props.movieObj}</>;
+  return <><img src={props.movieObj.poster}/></>;
 };
 // End of MovieItem Component
 

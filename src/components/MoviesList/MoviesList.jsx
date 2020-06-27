@@ -1,5 +1,5 @@
 // React Imports:
-import React, { useState } from "react";
+import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 
@@ -7,18 +7,31 @@ import MovieItem from "../MovieItem/MovieItem";
 
 // This component will display a list of movies taken from the server and database
 // using redux global state and dispatching to sagas
-const MoviesList = () => {
+class MoviesList extends Component {
+  componentWillMount() {
+    this.props.dispatch({ type: "FETCH_MOVIES" });
+  }
 
-  const [moviesArr] = useState([1, 2, 3]);
+  componentDidMount() {
+    this.props.dispatch({ type: "FETCH_MOVIES" });
+  }
 
-  return (
-    <>
-      {moviesArr.map((movieObj, index) => (
-        <MovieItem key={index,movieObj} movieObj={movieObj} />
-      ))}
-    </>
-  );
-};
+  render() {
+    return (
+      <div>
+        {this.props.movies !== null ? (
+          <div>
+            {this.props.movies.map((movieObj, index) => (
+              <MovieItem key={index + movieObj} movieObj={movieObj} />
+            ))}
+          </div>
+        ) : (
+          <p>Empty</p>
+        )}
+      </div>
+    );
+  }
+}
 // End of MoviesList Component
 
 // Pull current state from Redux store
