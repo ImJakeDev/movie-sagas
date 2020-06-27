@@ -16,8 +16,20 @@ CREATE TABLE "genres" (
 -- You will need to create the junction table that stores the relationships between "movies" and "genres"
 -- This table will need to be populated with some data as well (INSERTS)
 -- Recall that this Junction Table will just be a table of ids!
+CREATE TABLE "movies_genres" (
+  "id" SERIAL PRIMARY KEY,
+  "movie_id" INT NOT NULL REFERENCES "movies",
+  "genre_id" INT NOT NULL REFERENCES "genres"
+);
 
-
+-- Way to select the movie with an array of genres of said movie:
+SELECT "movies"."title", array_agg(name) AS genres
+FROM "movies"
+JOIN "movies_genres"
+ON "movies"."id" = "movies_genres"."movie_id"
+JOIN "genres"
+ON "genres"."id" = "movies_genres"."genre_id"
+GROUP BY "movies"."title";
 
 --------[ DATA! ]---------
 
@@ -55,3 +67,6 @@ VALUES
 ('Science Fiction'),
 ('Space-Opera'),
 ('Superhero');
+
+INSERT INTO "movies_genres" ("movie_id", "genre_id")
+VALUES (1, 2), (2, 2), (1, 1), (2, 10), (2, 8), (2, 5);
