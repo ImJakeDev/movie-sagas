@@ -5,7 +5,7 @@ import registerServiceWorker from "./registerServiceWorker";
 // Index CSS import:
 import "./index.css";
 // Component import:
-import App from "./components/App/App.js";
+import App from "./components/App/App";
 // Redux imports:
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
