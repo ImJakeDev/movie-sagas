@@ -15,7 +15,17 @@ class MovieGenres extends Component {
   render() {
     return (
       <div>
-        {JSON.stringify(this.genres)}
+        <p>Here are the genres</p>
+        {/* {JSON.stringify(this.props.genres[0])} */}
+        {this.props.genres !== null ? (
+          <div>
+            {this.props.genres.map((movieObj, index) => (
+              <div>{JSON.stringify(movieObj.genres)}</div>
+            ))}
+          </div>
+        ) : (
+            <p>Empty</p>
+          )}
       </div>
     );
   }
