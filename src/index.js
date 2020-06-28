@@ -34,9 +34,11 @@ function* fetchMovies() {
 }
 // fetchGenres saga retrieves movie genres for each movie from server
 function* fetchGenres(action) {
+  console.log(action);
+  
   try {
     const movieTitle = action.payload;
-    const response = yield axios.get(`/api/genres?ids=${movieTitle}`);
+    const response = yield axios.get(`/api/genres/?title=${movieTitle}`);
     yield put({ type: "SET_GENRES", payload: response.data });
   } catch (error) {
     alert(error);

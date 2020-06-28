@@ -5,7 +5,9 @@ const router = express.Router();
 // GET to genres database table
 router.get("/", (req, res) => {
   // Return all genres from a specific movie
-  console.log(req);
+  console.log(req.query.title);
+
+  const movieTitle = req.query.title;
   
   const queryText = `
     SELECT "movies"."title", array_agg(name) AS genres
@@ -14,7 +16,7 @@ router.get("/", (req, res) => {
     ON "movies"."id" = "movies_genres"."movie_id"
     JOIN "genres"
     ON "genres"."id" = "movies_genres"."genre_id"
-    WHERE "movies"."title" = ${movieTitle}
+    WHERE "movies"."title" = '${movieTitle}'
     GROUP BY "movies"."title";
   `;
   pool

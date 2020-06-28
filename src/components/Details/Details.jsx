@@ -2,6 +2,8 @@
 import React from "react";
 // React Router DOM Imports:
 import { useLocation } from "react-router";
+// Components Imports
+import MovieGenres from "../MovieGenres/MovieGenres";
 
 // This component shows details of each movies and has buttons
 const Details = () => {
@@ -11,18 +13,9 @@ const Details = () => {
       <h3>Here are the deets.</h3>
       <h4>{location.state.movieTitle}</h4>
       <p>{location.state.movieDescription}</p>
+      <MovieGenres movieTitle={location.state.movieTitle}/>
     </>
   );
 };
 
 export default Details;
-
-// componentWillMount() {
-//   const location = useLocation();
-//   this.props.dispatch({ type: "FETCH_GENRES", payload: `${location.state.movieTitle}` });
-// }
-
-// componentDidMount() {
-//   const location = useLocation();
-//   this.props.dispatch({ type: "FETCH_GENRES", payload: `${location.state.movieTitle}` });
-// }
