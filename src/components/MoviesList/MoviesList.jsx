@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
-
+// Components Imports
 import MovieItem from "../MovieItem/MovieItem";
 
 // This component will display a list of movies taken from the server and database
