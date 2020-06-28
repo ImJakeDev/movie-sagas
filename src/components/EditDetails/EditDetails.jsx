@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 // React Router DOM Imports:
-import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 class EditDetails extends Component {
   // Not sure if this will work...
@@ -49,4 +49,4 @@ class EditDetails extends Component {
   }
 }
 
-export default connect()(EditDetails);
+export default withRouter (connect()(EditDetails));
