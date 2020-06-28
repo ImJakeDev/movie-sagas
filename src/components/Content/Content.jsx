@@ -15,7 +15,7 @@ const Content = () => {
         <Route exact path="/">
           <MoviesList />
         </Route>
-        <Route exact path="/details">
+        <Route path="/details">
           <Details />
         </Route>
       </Router>
