@@ -24,6 +24,7 @@ const Details = () => {
         to={{
           pathname: "/edit",
           state: {
+            movieId: `${location.state.movieId}`,
             movieTitle: `${location.state.movieTitle}`,
             movieDescription: `${location.state.movieDescription}`,
           },

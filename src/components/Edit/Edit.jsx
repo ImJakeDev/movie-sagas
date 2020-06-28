@@ -20,11 +20,12 @@ const Details = () => {
     <>
       <h3>Make some edits</h3>
       <button onClick={handleBackClick}>Home</button>
-      <EditDetails title={location.state.movieTitle} description={location.state.movieDescription} />
+      <EditDetails id={location.state.movieId} title={location.state.movieTitle} description={location.state.movieDescription} />
       <Link
         to={{
           pathname: "/details",
           state: {
+            movieId: `${location.state.movieId}`,
             movieTitle: `${location.state.movieTitle}`,
             movieDescription: `${location.state.movieDescription}`,
           },

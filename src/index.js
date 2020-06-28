@@ -22,6 +22,7 @@ import axios from "axios";
 function* rootSaga() {
   yield takeEvery("FETCH_MOVIES", fetchMovies);
   yield takeEvery("FETCH_GENRES", fetchGenres);
+  yield takeEvery("EDIT_MOVIE", editMovie);
 }
 // fetchMovies saga retrieves movies from server
 function* fetchMovies() {
@@ -40,6 +41,18 @@ function* fetchGenres(action) {
     const movieTitle = action.payload;
     const response = yield axios.get(`/api/genres/?title=${movieTitle}`);
     yield put({ type: "SET_GENRES", payload: response.data });
+  } catch (error) {
+    alert(error);
+  }
+}
+// editMovie saga passes a payload of the change to be made on the server to the database
+function* editMovie(action) {
+  console.log(action);
+
+  try {
+    const movieEdits = action.payload;
+    const response = yield axios.put('/api/movies/', movieEdits);
+    yield put({ type: "SET_MOVIES", payload: response.data });
   } catch (error) {
     alert(error);
   }

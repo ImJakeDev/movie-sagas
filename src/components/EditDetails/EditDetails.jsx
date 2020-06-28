@@ -2,11 +2,15 @@
 import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
+// React Router DOM Imports:
+import { Link } from "react-router-dom";
 
 class EditDetails extends Component {
+  // Not sure if this will work...
   state = {
-    title: '',
-    description: ''
+    id: `${this.props.id}`,
+    title: `${this.props.title}`,
+    description: `${this.props.description}`
   }
 
   handleChangeFor = (propertyName, event) => {
@@ -17,11 +21,11 @@ class EditDetails extends Component {
 
   addEdit = (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: "???", payload: this.state });
-    this.setState({
-      title: '',
-      description: ''
-    });
+    // How do I send only the items that have been changed?
+    this.props.dispatch({ type: "EDIT_MOVIE", payload: this.state });
+    // this.setState({
+    // });
+    this.props.history.push('/details')
   };
 
   render() {
@@ -39,7 +43,7 @@ class EditDetails extends Component {
           placeholder="Description"
           value={this.state.description}
           onChange={(event) => this.handleChangeFor("description", event)} />
-        <button onClick={this.addEdit}>Save</button>
+         <button onClick={this.addEdit}>Save</button>
       </>
     )
   }

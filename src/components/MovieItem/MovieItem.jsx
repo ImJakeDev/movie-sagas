@@ -11,6 +11,7 @@ const MovieItem = (props) => {
         to={{
           pathname: "/details",
           state: {
+            movieId: `${props.movieObj.id}`,
             movieTitle: `${props.movieObj.title}`,
             movieDescription: `${props.movieObj.description}`,
           },
