@@ -1,16 +1,9 @@
 // React Imports:
 import React from "react";
 // React Router DOM Imports:
-// import { useHistory } from "react-router-dom";
-// React Router DOM Imports:
 import { Link } from "react-router-dom";
 
 const MovieItem = (props) => {
-  // let history = useHistory();
-
-  // const handleClick = () => {
-  //   history.push('/details');
-  // }
 
   return (
     <div>

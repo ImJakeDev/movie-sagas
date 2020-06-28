@@ -21,12 +21,23 @@ import axios from "axios";
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery("FETCH_MOVIES", fetchMovies);
+  yield takeEvery("FETCH_GENRES", fetchGenres);
 }
 // fetchMovies saga retrieves movies from server
 function* fetchMovies() {
   try {
     const response = yield axios.get('/api/movies');
     yield put({ type: "SET_MOVIES", payload: response.data });
+  } catch (error) {
+    alert(error);
+  }
+}
+// fetchGenres saga retrieves movie genres for each movie from server
+function* fetchGenres(action) {
+  try {
+    const movieTitle = action.payload;
+    const response = yield axios.get(`/api/genres?ids=${movieTitle}`);
+    yield put({ type: "SET_GENRES", payload: response.data });
   } catch (error) {
     alert(error);
   }
