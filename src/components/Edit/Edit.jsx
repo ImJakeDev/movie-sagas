@@ -4,8 +4,6 @@ import React from "react";
 import { useLocation, useHistory } from "react-router";
 // React Router DOM Imports:
 import { Link } from "react-router-dom";
-// Components Imports
-import MovieGenres from "../MovieGenres/MovieGenres";
 
 // This component shows details of each movies and has buttons
 const Details = () => {
@@ -18,22 +16,14 @@ const Details = () => {
 
   return (
     <>
-      <h3>Here are the deets.</h3>
+      <h3>Make some edits</h3>
       <button onClick={handleBackClick}>Home</button>
-      <Link
-        to={{
-          pathname: "/edit",
-          state: {
-            movieTitle: `${location.state.movieTitle}`,
-            movieDescription: `${location.state.movieDescription}`,
-          },
-        }}
-      >
-        <button>Edit</button>
-      </Link>
       <h4>{location.state.movieTitle}</h4>
+      <input type='text'/>
       <p>{location.state.movieDescription}</p>
-      <MovieGenres movieTitle={location.state.movieTitle}/>
+      <input type='text' />
+      <button>Cancel</button>
+      <button>Save</button>
     </>
   );
 };

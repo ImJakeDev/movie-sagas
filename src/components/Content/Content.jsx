@@ -5,6 +5,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 // Components Imports
 import MoviesList from "../MoviesList/MoviesList";
 import Details from "../Details/Details";
+import Edit from "../Edit/Edit";
 
 // This component holds all the componets of state that have different routes to them.
 const Content = () => {
@@ -17,6 +18,9 @@ const Content = () => {
         </Route>
         <Route path="/details">
           <Details />
+        </Route>
+        <Route path="/edit">
+          <Edit />
         </Route>
       </Router>
     </>
