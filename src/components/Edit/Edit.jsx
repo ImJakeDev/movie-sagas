@@ -22,7 +22,17 @@ const Details = () => {
       <input type='text'/>
       <p>{location.state.movieDescription}</p>
       <input type='text' />
-      <button>Cancel</button>
+      <Link
+        to={{
+          pathname: "/details",
+          state: {
+            movieTitle: `${location.state.movieTitle}`,
+            movieDescription: `${location.state.movieDescription}`,
+          },
+        }}
+      >
+        <button>Cancel</button>
+      </Link>
       <button>Save</button>
     </>
   );
