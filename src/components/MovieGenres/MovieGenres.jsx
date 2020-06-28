@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
+// Components Imports
+import MovieGenreItem from "../MovieGenreItem/MovieGenreItem";
 
 class MovieGenres extends Component {
   componentWillMount() {
@@ -20,7 +22,9 @@ class MovieGenres extends Component {
         {this.props.genres !== null ? (
           <div>
             {this.props.genres.map((movieObj, index) => (
-              <div>{JSON.stringify(movieObj.genres)}</div>
+            // <div>{JSON.stringify(movieObj.genres)}</div>
+            // <div>{movieObj.map((genre, index) => <p>{genre}</p>)}</div>
+              <MovieGenreItem movieObj={movieObj} />
             ))}
           </div>
         ) : (
