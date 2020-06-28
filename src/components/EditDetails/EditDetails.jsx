@@ -3,19 +3,20 @@ import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 // React Router DOM Imports:
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class EditDetails extends Component {
   // Not sure if this will work...
   state = {
     id: `${this.props.id}`,
     title: `${this.props.title}`,
-    description: `${this.props.description}`
-  }
+    description: `${this.props.description}`,
+  };
 
   handleChangeFor = (propertyName, event) => {
     this.setState({
-      [propertyName]: event.target.value 
+      [propertyName]: event.target.value,
     });
   };
 
@@ -25,7 +26,7 @@ class EditDetails extends Component {
     this.props.dispatch({ type: "EDIT_MOVIE", payload: this.state });
     // this.setState({
     // });
-    this.props.history.push('/details')
+    this.props.history.push("/details");
   };
 
   render() {
@@ -36,17 +37,30 @@ class EditDetails extends Component {
           type="text"
           placeholder="Title"
           value={this.state.title}
-          onChange={(event) => this.handleChangeFor("title", event)} />
+          onChange={(event) => this.handleChangeFor("title", event)}
+        />
         <p>{this.props.description}</p>
         <input
           type="text"
           placeholder="Description"
           value={this.state.description}
-          onChange={(event) => this.handleChangeFor("description", event)} />
-         <button onClick={this.addEdit}>Save</button>
+          onChange={(event) => this.handleChangeFor("description", event)}
+        />
+        <Link
+          to={{
+            pathname: "/details",
+            state: {
+              movieId: `${this.props.id}`,
+              movieTitle: `${this.props.title}`,
+              movieDescription: `${this.props.description}`,
+            },
+          }}
+        >
+          <button onClick={this.addEdit}>Save</button>
+        </Link>
       </>
-    )
+    );
   }
 }
 
-export default withRouter (connect()(EditDetails));
+export default withRouter(connect()(EditDetails));

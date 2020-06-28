@@ -1,9 +1,23 @@
-# Project Name
+# Movie Sagas
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Movie Sagas is a project built in Full stack and displays a list of movie poster that you can edit when clicked on and see more information.
 
-## Description
+## Installation
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Use the package manager [npm](https://www.npmjs.com/) to install Movie Sagas.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+```javascript
+npm install
+```
+
+## Usage
+
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
