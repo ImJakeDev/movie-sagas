@@ -2,8 +2,17 @@
 import React, { Component } from "react";
 // Redux Imports:
 import { connect } from "react-redux";
+
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 // Components Imports
 import MovieItem from "../MovieItem/MovieItem";
+
+const styles = (theme) => ({
+  root: {
+    
+  },
+});
 
 // This component will display a list of movies taken from the server and database
 // using redux global state and dispatching to sagas
@@ -17,14 +26,15 @@ class MoviesList extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         {this.props.movies !== null ? (
-          <div>
+          <Grid container spacing={3}>
             {this.props.movies.map((movieObj, index) => (
               <MovieItem key={index + movieObj} movieObj={movieObj} />
             ))}
-          </div>
+          </Grid>
         ) : (
           <p>Empty</p>
         )}
@@ -41,4 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(MoviesList);
+export default connect(mapStateToProps)(withStyles(styles)(MoviesList));

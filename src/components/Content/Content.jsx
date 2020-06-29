@@ -7,12 +7,11 @@ import MoviesList from "../MoviesList/MoviesList";
 import Details from "../Details/Details";
 import Edit from "../Edit/Edit";
 
-// This component holds all the componets of state that have different routes to them.
+// This component holds all the components of state that have different routes to them.
 const Content = () => {
   return (
     <>
       <Router>
-        <h1>Here are the movies:</h1>
         <Route exact path="/">
           <MoviesList />
         </Route>

@@ -4,6 +4,8 @@ import React from "react";
 import { useLocation, useHistory } from "react-router";
 // React Router DOM Imports:
 import { Link } from "react-router-dom";
+
+import Button from "@material-ui/core/Button";
 // Components Imports
 import MovieGenres from "../MovieGenres/MovieGenres";
 
@@ -18,8 +20,9 @@ const Details = () => {
 
   return (
     <>
-      <h3>Here are the deets.</h3>
-      <button onClick={handleBackClick}>Home</button>
+      <Button variant="contained" color="primary" onClick={handleBackClick}>
+        Home
+      </Button>
       <Link
         to={{
           pathname: "/edit",
@@ -30,11 +33,13 @@ const Details = () => {
           },
         }}
       >
-        <button>Edit</button>
+        <Button variant="contained" color="primary">
+          Edit
+        </Button>
       </Link>
       <h4>{location.state.movieTitle}</h4>
       <p>{location.state.movieDescription}</p>
-      <MovieGenres movieTitle={location.state.movieTitle}/>
+      <MovieGenres movieTitle={location.state.movieTitle} />
     </>
   );
 };
